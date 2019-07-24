@@ -3,9 +3,6 @@ python:
   - "3.6"
   - "3.7"
 
-services:
-  - docker
-
 script:
   - ci_env=`bash <(curl -s https://codecov.io/env)`
   - python -m unittest
