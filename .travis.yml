@@ -1,0 +1,23 @@
+language: python
+python:
+  - "3.6"
+  - "3.7"
+
+services:
+  - docker
+
+script:
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
+  - python -m unittest
+  - pip install coverage
+  - coverage run --source crestdsl --branch -m unittest discover -v
+  - coverage report
+  - bash <(curl -s https://codecov.io/bash)'
+
+deploy:
+  provider: pypi
+  user: $PYPI_USER
+  password: $PYPI_PASSWORD
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true
