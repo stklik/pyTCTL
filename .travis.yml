@@ -7,7 +7,7 @@ script:
   - ci_env=`bash <(curl -s https://codecov.io/env)`
   - python -m unittest
   - pip install coverage
-  - coverage run --source crestdsl --branch -m unittest discover -v
+  - coverage run --source pytctl --branch -m unittest discover -v
   - coverage report
   - bash <(curl -s https://codecov.io/bash)'
 
