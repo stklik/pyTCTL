@@ -6,11 +6,15 @@ python:
 script:
   - ci_env=`bash <(curl -s https://codecov.io/env)`
   - python -m unittest
-  - pip install coverage
+  - pip install coverage codecov
   - coverage run --source pytctl --branch -m unittest discover -v
   - coverage report
-  - bash <(curl -s https://codecov.io/bash)'
+  # - bash <(curl -s https://codecov.io/bash)'
 
+# Push the results back to codecov
+after_success:
+  - codecov
+  
 deploy:
   provider: pypi
   user: $PYPI_USER
